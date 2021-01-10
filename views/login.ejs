@@ -32,17 +32,16 @@
         <h1>Welcome</h1>
     </div>
     <div class="cont">
-        <form method="POST">
-            Username:<br>
-            <input type="text" name="username">
-            <br>
-            Password:<br>
-            <input type="password" name="password">
-            <br><br>
-            <input type="submit" value="Login">
+        <form method='post' action='/home'>
+            Username: <br>
+            <input type="text" id="user" name="username"> <br>
+            Password: <br>
+            <input type="password" id="password" name="password"> <br> <br>
+            <input type="submit" id="simple_click" class="btn btn-secondary" value="Login"> <br>
         </form>
         <br>
         <a href="registration">I dont have an account</a>
+        <div><%= e %> <br></div>
     </div>
 </body>
 </html>

@@ -13,6 +13,9 @@
             text-align: center;
             -webkit-text-stroke: 1px blue;
         }
+        div{
+            color:white
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +25,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
         <a class="navbar-brand" style="color: rgb(191, 255, 161)">Search Results</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -38,5 +42,51 @@
             </form>
         </div>
     </nav>
+    <div>
+        
+        <div id="Dune">
+        <img id="image" src="/dune.jpg" width="193" height="300">
+        <button onclick="location.href = '/dune';" id="dune" class="btn btn-secondary ml-3"> View </button>
+    </div>
+    <div id="Lord of the Flies">
+        <img id="image" src="/flies.jpg" width="193" height="300">
+        <button onclick="location.href = '/flies';" id="flies" class="btn btn-secondary ml-3"> View </button>
+    </div>
+    <div id="The Grapes of Wrath">
+        <img id="image" src="/grapes.jpg" width="193" height="300">
+        <button onclick="location.href = '/grapes';" id="grapes" class="btn btn-secondary ml-3"> View </button>
+    </div>
+    <div id="Leaves of Grass">
+        <img id="image" src="/leaves.jpg" width="193" height="300">
+        <button onclick="location.href = '/leaves';" id="leaves" class="btn btn-secondary ml-3"> View </button>
+    </div>
+    <div id="To Kill a Mockingbird">
+        <img id="image" src="/mockingbird.jpg" width="193" height="300">
+        <button onclick="location.href = '/mockingbird';" id="mockingbird" class="btn btn-secondary ml-3"> View </button>
+    </div>
+    <div id="The Sun and Her Flowers">
+        <img id="image" src="/sun.jpg" width="193" height="300">
+        <button onclick="location.href = '/sun';" id="sun" class="btn btn-secondary ml-3"> View </button>
+    </div>
+    
+    <div id= no> <%=f%>  </div>  
+   
+
+    </div>
 </body>
 </html>
+
+<script>
+    document.getElementById("Dune").style.display="none"
+    document.getElementById("The Sun and Her Flowers").style.display="none"
+    document.getElementById("To Kill a Mockingbird").style.display="none"
+    document.getElementById("Leaves of Grass").style.display="none"
+    document.getElementById("The Grapes of Wrath").style.display="none"
+    document.getElementById("Lord of the Flies").style.display="none"
+    var x = "<%=f%>"
+        var d = x.split(",")
+        for (let index = 0; index < d.length; index++) {
+           document.getElementById(d[index]).style.display="block"
+   
+       }
+</script>
