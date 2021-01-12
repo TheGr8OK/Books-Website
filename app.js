@@ -44,27 +44,27 @@ app.get('/readlist', function (req, res) {
 
 
 app.get('/flies', function (req, res) {
-  res.render('flies');
+  res.render('flies', {msg:""});
 });
 
 app.get('/grapes', function (req, res) {
-  res.render('grapes');
+  res.render('grapes', {msg:""});
 });
 
 app.get('/mockingbird', function (req, res) {
-  res.render('mockingbird');
+  res.render('mockingbird', {msg:""});
 });
 
 app.get('/leaves', function (req, res) {
-  res.render('leaves');
+  res.render('leaves', {msg:""});
 });
 
 app.get('/sun', function (req, res) {
-  res.render('sun');
+  res.render('sun', {msg:""});
 });
 
 app.get('/dune', function (req, res) {
-  res.render('dune');
+  res.render('dune', {msg:""});
 });
 
 app.get('/home', function(req,res){
@@ -159,51 +159,23 @@ app.post('/search', function(req,res){
 })
   
 app.post('/addmockingbird', function(req,res){
- var x= Session["user"]
- var ee = fs.readFileSync("users.json")
- var z = JSON.parse(ee);
- for(var i =0; i<z.length; i++){
-   if(z[i].username==x){
-   z[i].readlist=z[i].readlist +"To Kill a Mockingbird" + "," 
-   
-   z = JSON.stringify(z);
-
-   fs.writeFileSync("users.json",z)
-   var p = JSON.parse(z)
-   res.render('readlist', {l:p[i].readlist})
-   break;
-   }
- }
- 
- 
-})
-
-app.post('/addflies', function(req,res){
-  var x= Session["user"]
- var ee = fs.readFileSync("users.json")
- var z = JSON.parse(ee);
- for(var i =0; i<z.length; i++){
-   if(z[i].username==x){
-   z[i].readlist=z[i].readlist +"Lord of the Flies" + "," 
-   
-   z = JSON.stringify(z);
-
-   fs.writeFileSync("users.json",z)
-   var p = JSON.parse(z)
-   res.render('readlist', {l:p[i].readlist})
-   break;
-   }
- }
- 
-})
-
-app.post('/adddunes', function(req,res){
   var x= Session["user"]
   var ee = fs.readFileSync("users.json")
   var z = JSON.parse(ee);
   for(var i =0; i<z.length; i++){
     if(z[i].username==x){
-    z[i].readlist=z[i].readlist +"Dunes" + "," 
+      var ko = z[i].readlist.split(",")
+      var flag = false
+      for (let j = 0; j < ko.length; j++) {
+        if(ko[j]=="To Kill a Mockingbird"){
+         flag = true
+         break
+        }
+      }
+      if(flag){
+        res.render('mockingbird',{msg:"already in want to read list"})
+      }
+    z[i].readlist=z[i].readlist +"To Kill a Mockingbird" + "," 
     
     z = JSON.stringify(z);
  
@@ -213,16 +185,55 @@ app.post('/adddunes', function(req,res){
     break;
     }
   }
-  
 })
 
-app.post('/addsun', function(req,res){
+app.post('/addflies', function(req,res){
+  var x= Session["user"]
+  var ee = fs.readFileSync("users.json")
+  var z = JSON.parse(ee);
+  for(var i =0; i<z.length; i++){
+    if(z[i].username==x){
+      var ko = z[i].readlist.split(",")
+      var flag = false
+      for (let j = 0; j < ko.length; j++) {
+        if(ko[j]=="Lord of the Flies"){
+         flag = true
+         break
+        }
+      }
+      if(flag){
+        res.render('flies',{msg:"already in want to read list"})
+      }
+    z[i].readlist=z[i].readlist +"Lord of the Flies" + "," 
+    
+    z = JSON.stringify(z);
+ 
+    fs.writeFileSync("users.json",z)
+    var p = JSON.parse(z)
+    res.render('readlist', {l:p[i].readlist})
+    break;
+    }
+  }
+})
+
+app.post('/adddunes', function(req,res){
   var x= Session["user"]
  var ee = fs.readFileSync("users.json")
  var z = JSON.parse(ee);
  for(var i =0; i<z.length; i++){
    if(z[i].username==x){
-   z[i].readlist=z[i].readlist +"The Sun and Her Flowers" + "," 
+     var ko = z[i].readlist.split(",")
+     var flag = false
+     for (let j = 0; j < ko.length; j++) {
+       if(ko[j]=="Dune"){
+        flag = true
+        break
+       }
+     }
+     if(flag){
+       res.render('dune',{msg:"already in want to read list"})
+     }
+   z[i].readlist=z[i].readlist +"Dune" + "," 
    
    z = JSON.stringify(z);
 
@@ -232,27 +243,65 @@ app.post('/addsun', function(req,res){
    break;
    }
  }
-  
+})
+
+app.post('/addsun', function(req,res){
+  var x= Session["user"]
+  var ee = fs.readFileSync("users.json")
+  var z = JSON.parse(ee);
+  for(var i =0; i<z.length; i++){
+    if(z[i].username==x){
+      var ko = z[i].readlist.split(",")
+      var flag = false
+      for (let j = 0; j < ko.length; j++) {
+        if(ko[j]=="The Sun and Her Flowers"){
+         flag = true
+         break
+        }
+      }
+      if(flag){
+        res.render('sun',{msg:"already in want to read list"})
+      }
+    z[i].readlist=z[i].readlist +"The Sun and Her Flowers" + "," 
+    
+    z = JSON.stringify(z);
+ 
+    fs.writeFileSync("users.json",z)
+    var p = JSON.parse(z)
+    res.render('readlist', {l:p[i].readlist})
+    break;
+    }
+  }
   
 })
 
 app.post('/addgrapes', function(req,res){
   var x= Session["user"]
-  var ee = fs.readFileSync("users.json")
-  var z = JSON.parse(ee);
-  for(var i =0; i<z.length; i++){
-    if(z[i].username==x){
-    z[i].readlist=z[i].readlist +"The Grapes of Wrath" + "," 
-    
-    z = JSON.stringify(z);
- 
-    fs.writeFileSync("users.json",z)
-    var p = JSON.parse(z)
-    res.render('readlist', {l:p[i].readlist})
-    break;
-    }
-  }
+ var ee = fs.readFileSync("users.json")
+ var z = JSON.parse(ee);
+ for(var i =0; i<z.length; i++){
+   if(z[i].username==x){
+     var ko = z[i].readlist.split(",")
+     var flag = false
+     for (let j = 0; j < ko.length; j++) {
+       if(ko[j]=="The Grapes of Wrath"){
+        flag = true
+        break
+       }
+     }
+     if(flag){
+       res.render('grapes',{msg:"already in want to read list"})
+     }
+   z[i].readlist=z[i].readlist +"The Grapes of Wrath" + "," 
+   
+   z = JSON.stringify(z);
 
+   fs.writeFileSync("users.json",z)
+   var p = JSON.parse(z)
+   res.render('readlist', {l:p[i].readlist})
+   break;
+   }
+ }
 })
 
 app.post('/addleaves', function(req,res){
@@ -261,6 +310,17 @@ app.post('/addleaves', function(req,res){
  var z = JSON.parse(ee);
  for(var i =0; i<z.length; i++){
    if(z[i].username==x){
+     var ko = z[i].readlist.split(",")
+     var flag = false
+     for (let j = 0; j < ko.length; j++) {
+       if(ko[j]=="Leaves of Grass"){
+        flag = true
+        break
+       }
+     }
+     if(flag){
+       res.render('leaves',{msg:"already in want to read list"})
+     }
    z[i].readlist=z[i].readlist +"Leaves of Grass" + "," 
    
    z = JSON.stringify(z);

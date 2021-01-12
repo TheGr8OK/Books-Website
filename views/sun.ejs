@@ -7,6 +7,9 @@
             background-repeat: no-repeat;
             background-size: 100%;
         }
+        div{
+            color: white;
+        }
         h1 {
             color: white;
             text-align: center;
@@ -79,6 +82,7 @@
     <div class="readlist">
         <form method="POST" action='/addsun' class="form-inline my-2 my-lg-0">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add to Want to Read List</button>
+            <%= msg %>
         </form>    </div>
     <div class="video">
         <iframe width="956" height="538" src="https://www.youtube.com/embed/NfOdCNOufv8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
